@@ -241,6 +241,6 @@ The portfolio features a contemporary dark mode design that's easy on the eyes a
 
 If you have any questions, suggestions, or feedback about this portfolio, feel free to reach out:
 
-- **Email**: dadatolulope@gmail.com
+- **Email**: dadaakorede3@gmail.com
 - **LinkedIn**:
-- **GitHub**:
+- **GitHub**:https://github.com/Space-TL

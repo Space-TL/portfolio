@@ -18,8 +18,6 @@ const App = {
 
     // Update date time every second
     setInterval(() => this.updateDateTime(), 1000);
-
-    console.log("Portfolio initialized successfully!");
   },
 
   // Setup event listeners
@@ -184,45 +182,38 @@ const App = {
   setupMobileMenu() {
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
     const closeMobileMenu = document.getElementById("closeMobileMenu");
-    const mobileMenu = document.getElementById("mobileMenu");
 
-    // Open mobile menu
     mobileMenuBtn.addEventListener("click", () => {
       this.toggleMobileMenu(true);
     });
 
-    // Close mobile menu
     closeMobileMenu.addEventListener("click", () => {
       this.toggleMobileMenu(false);
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (
-        this.mobileMenuOpen &&
-        !mobileMenu.contains(e.target) &&
-        !mobileMenuBtn.contains(e.target)
-      ) {
-        this.toggleMobileMenu(false);
-      }
     });
   },
 
   // Toggle mobile menu
-  toggleMobileMenu(open) {
+  toggleMobileMenu(forceState) {
     const mobileMenu = document.getElementById("mobileMenu");
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 
-    if (open) {
-      mobileMenu.classList.add("active");
-      mobileMenuBtn.innerHTML = '<i class="fas fa-times text-xl"></i>';
+    // Determine the new state
+    const willOpen =
+      typeof forceState === "boolean" ? forceState : !this.mobileMenuOpen;
+
+    this.mobileMenuOpen = willOpen;
+
+    // console.log("Toggling menu. Current state:", willOpen);
+
+    if (willOpen) {
+      mobileMenu.classList.remove("-translate-x-full");
+      mobileMenu.classList.add("translate-x-0");
       document.body.style.overflow = "hidden";
-      this.mobileMenuOpen = true;
+      mobileMenuBtn.innerHTML = "";
     } else {
-      mobileMenu.classList.remove("active");
-      mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+      mobileMenu.classList.add("-translate-x-full");
+      mobileMenu.classList.remove("translate-x-0");
       document.body.style.overflow = "";
-      this.mobileMenuOpen = false;
+      mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
     }
   },
 
